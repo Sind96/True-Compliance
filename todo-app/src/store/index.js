@@ -6,11 +6,16 @@ export const store = createStore({
   },
   mutations: {
     addTask(state, task) {
+      if (!state.tasks) {
+        state.tasks = [];
+      }
       state.tasks.push(task);
     },
     toggleTaskCompletion(state, taskId) {
       const task = state.tasks.find((task) => task.id === taskId);
-      task.completed = !task.completed;
+      if (task) {
+        task.completed = !task.completed;
+      }
     },
     deleteTask(state, taskId) {
       state.tasks = state.tasks.filter((task) => task.id !== taskId);
@@ -19,7 +24,7 @@ export const store = createStore({
       state.tasks = state.tasks.filter((t) => !t.completed);
     },
     setTasks(state, tasks) {
-      state.tasks = tasks;
+      state.tasks = tasks || [];
     },
   },
   actions: {
@@ -27,7 +32,7 @@ export const store = createStore({
       localStorage.setItem("tasks", JSON.stringify(state.tasks));
     },
     loadTasks({ commit }) {
-      const tasks = JSON.parse(localStorage.getItem("tasks"));
+      const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
       commit("setTasks", tasks);
     },
   },

@@ -1,4 +1,5 @@
 <template>
+  <p class="text-3xl font-bold mb-4 w-100 text-center text-blue-600">ToDo List</p>
   <input
     type="text"
     v-model="newTask"
