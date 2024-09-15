@@ -13,7 +13,10 @@ export const store = createStore({
       task.completed = !task.completed;
     },
     deleteTask(state, taskId) {
-      state.tasks = state.tasks.filter((task) => !task.completed);
+      state.tasks = state.tasks.filter((task) => task.id !== taskId);
+    },
+    clearCompletedTasks(state) {
+      state.tasks = state.tasks.filter((t) => !t.completed);
     },
     setTasks(state, tasks) {
       state.tasks = tasks;

@@ -4,7 +4,7 @@
     v-model="newTask"
     placeholder="Add a new task"
     @keyup.enter="addTask"
-    class="input"
+    class="w-full p-2 border border-gray-300 rounded-md"
   />
 </template>
 
